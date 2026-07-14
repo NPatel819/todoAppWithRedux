@@ -1,0 +1,1625 @@
+ `accountOpenDate` (+`accountOpenDateFormat`) | — | fallback if `accountAgeMonths` blank. |
+
+API : auBank/purpose-additional-document
+Request 
+{
+  "requestId": "REQ1784028900002",
+  "requestType": "PURPOSEADDLDOC",
+  "channelId": "WEB",
+  "clientId": "AU",
+  "groupId": "AU",
+  "sessionId": "SESSION1234567890",
+  "ipAddress": "127.0.0.1",
+  "userId": "7229119248",
+  "channel": "WEB",
+  "customerType": "ETB",
+  "purposeCode": "S0002",
+  "amountUsd": "14000",
+  "accountAgeMonths": "8",
+  "recvCurrency": "USD",
+  "transactionAmount": "14000",
+  "applicantName": "Ravi Kumar",
+  "beneficiaryName": "XYZ Global Debt Fund",
+  "branchName": "Andheri East",
+  "declarationFields": { "INVESTEE_ENTITY": "XYZ Global Debt Fund" }
+ "AccountNumber": "1234500001",
+  "branchName": "Andheri East",
+  "branchAddress": "Andheri East, Mumbai 400069"
+  "sourceOfIncome": "Salary",
+  "place": "Mumbai"
+}
+
+
+response 
+
+{
+  "responseId" : "57529918",
+  "requestId" : "REQ1784028900603",
+  "responseType" : "PURPOSEADDLDOC",
+  "groupId" : "AU",
+  "token" : null,
+  "status" : "S",
+  "message" : null,
+  "errorCode" : null,
+  "errorMessage" : null,
+  "errorList" : null,
+  "userRefIdInfo" : null,
+  "responseData" : [ {
+    "purposeCode" : "S0603",
+    "purposeName" : "General / Term-Life Insurance Premium",
+    "rbiPurposeCode" : "P0603",
+    "stream" : "US2",
+    "channel" : "WEB",
+    "customerType" : "ETB",
+    "amountBand" : "GT",
+    "accountAgeBand" : "ALL",
+    "eligible" : true,
+    "documents" : [ {
+      "docType" : "INSURANCE_POLICY",
+      "label" : "Underlying document / insurance policy",
+      "description" : "Required for remittances above USD 25,000.",
+      "mandatory" : true,
+      "oneOfGroup" : null
+    } ],
+    "declaration" : {
+      "required" : true,
+      "declarationCode" : "AU_DECL_S0603",
+      "title" : "General Insurance Declaration",
+      "acceptCheckboxRequired" : true,
+      "prefill" : true,
+      "content" : "<div class=\"au-declaration\"><p><strong>Declaration</strong><br/>(To be made by Resident Individual in case of Term Life Insurance premium, Other General Insurance Premium including Re-insurance Premium being remitted outside India)</p><p>Date: 14-Jul-2026</p><p>To,<br/>The Branch Manager,<br/>AU Small Finance Bank Limited<br/>Andheri East, Mumbai 400069</p><p>Dear Sir/Madam,</p><p>I am maintaining a Resident saving account in the name of Ravi Kumar having account no. 1234500001 in AU Bank&rsquo;s Andheri East Branch.</p><p>I hereby declare that I shall repatriate to India through normal banking channels the amount of any claim due on the policy, within a period of seven days from the receipt thereof.</p><p>Yours sincerely,<br/>Ravi Kumar</p></div>",
+      "contentFormat" : "HTML",
+      "autoPopulatedFields" : [ "DATE", "BRANCH_ADDRESS", "ACCOUNT_HOLDER_NAME", "ACCOUNT_NUMBER", "BRANCH_NAME", "CUSTOMER_NAME" ],
+      "tokenCatalog" : "DATE,BRANCH_ADDRESS,ACCOUNT_HOLDER_NAME,ACCOUNT_NUMBER,BRANCH_NAME,CUSTOMER_NAME"
+    },
+    "tooltipLabel" : "Supporting Document",
+    "tooltipContent" : null
+  } ],
+  "additionalFields" : null,
+  "customerResponse" : null,
+  "accountDetails" : null
+}
+
+
+Render response:
+                                 • documents[]      → upload rows (respect oneOfGroup = "any one of")
+                                 • declaration{}     → HTML block + accept checkbox (prefill=true on WEB)
+                                 • tooltipLabel/Content → the "?" help
+                                 • eligible=false   → block/redirect (ETB-only)
+
+
+
+-----------------------------
+
+
+
+
+
+
+
+
+{
+  "requestId": "REQ1784028834345",
+  "requestType": "PURPOSEADDLDOC",
+  "channelId": "WEB",
+  "clientId": "AU",
+  "groupId": "AU",
+  "sessionId": "SESSION1234567890",
+  "ipAddress": "127.0.0.1",
+  "userId": "7229119248",
+  "channel": "WEB",
+  "customerType": "ETB",
+  "purposeCode": "S0001",
+  "amountUsd": "14000", 
+  "accountAgeMonths": "08"
+}
+
+ resps 
+ {
+  "responseId" : "57529907",
+  "requestId" : "REQ1784028834345",
+  "responseType" : "PURPOSEADDLDOC",
+  "groupId" : "AU",
+  "token" : null,
+  "status" : "S",
+  "message" : null,
+  "errorCode" : null,
+  "errorMessage" : null,
+  "errorList" : null,
+  "userRefIdInfo" : null,
+  "responseData" : [ {
+    "purposeCode" : "S0001",
+    "purposeName" : "Indian Portfolio Investment Abroad - Equity Shares",
+    "rbiPurposeCode" : "P0001",
+    "stream" : "US1",
+    "channel" : "WEB",
+    "customerType" : "ETB",
+    "amountBand" : "ALL",
+    "accountAgeBand" : "GE1Y",
+    "eligible" : true,
+    "documents" : [ {
+      "docType" : "INVESTMENT_EVIDENCE",
+      "label" : "Documentary evidence for the purpose of investment",
+      "description" : null,
+      "mandatory" : true,
+      "oneOfGroup" : null
+    } ],
+    "declaration" : {
+      "required" : true,
+      "declarationCode" : "AU_DECL_S0001",
+      "title" : "Overseas Portfolio Investment - Self-Declaration",
+      "acceptCheckboxRequired" : true,
+      "prefill" : true,
+      "content" : "<div class=\"au-declaration\"><p><strong>Overseas Portfolio Investment under Liberalised Remittance Scheme</strong><br/>Self-Declaration by Remitter</p><p>Date: 14-Jul-2026<br/>The Branch Manager,<br/>AU Small Finance Bank Limited,<br/>________________ Branch</p><p>Dear Sir,</p><p>With reference to my request for outward remittance of ________________ 14000 to ________________ (beneficiary name) for Overseas Portfolio investment under Liberalised Remittance Scheme, I hereby confirm and declare as under -</p><ol><li>The proposed remittance is in compliance with Schedule III and Schedule V of Foreign Exchange Management (Overseas Investment) Rules, 2022.</li><li>The above remittance is towards my Overseas Portfolio Investment in M/s ________________ (name of the investee company/entity).</li><li>The remittance strictly adheres to the Overseas Investment rules so as to qualify as portfolio investment and not otherwise; I do not hold a controlling stake in the investee entity, directly or indirectly.</li><li>I have not subscribed and am not subscribing to the Memorandum of Association of the above-named investee company/entity.</li><li>I have not undertaken any financial commitment (OCPS/Loan/Guarantee etc.) in the above-named investee company/entity.</li><li>The above-named investee company/entity has not been and is not being incorporated by me.</li><li>The above-named investee company/entity is not a Joint Venture or Wholly Owned Subsidiary of mine.</li><li>I am not an active investor managing the affairs of the investee company/entity.</li><li>The investment is not in unlisted foreign equity/debt/derivatives (unless permitted by RBI) or in commodities (including BDR).</li><li>The investment is not towards sweat equity / minimum qualification shares / ESOPs / Employee Benefit schemes.</li><li>Any amount received/realized/unspent/unused foreign exchange, unless reinvested, shall be repatriated and surrendered to the AD Bank within 180 days, per RBI Notification FEMA 9(R)/2015-RB.</li><li>Disinvestment proceeds on transfer of shares/securities will be repatriated within 180 days of sale.</li><li>The foreign entity is engaged in non-financial activities.</li><li>Investment will be subject to the LRS limit prescribed under the Liberalised Remittance Scheme.</li><li>The investment does not fall under Overseas Direct Investment requiring ODI reporting to RBI.</li><li>The investment adheres to OI rules to qualify as portfolio investment and not otherwise.</li><li>I will submit Form FC and obtain UIN wherever the investment abroad is in an unlisted entity even without control.</li><li>All foreign-exchange transactions entrusted to AU Small Finance Bank Ltd will conform to the Foreign Exchange Management Act, 1999.</li><li>Said transactions shall not involve any contravention or evasion of the Act.</li><li>I shall be responsible and liable for any incorrect detail provided by me.</li><li>I undertake to give documents/details to satisfy the bank about this transaction.</li></ol><p>I am aware that any wrong declaration amounts to willful contravention of FEMA, 1999.</p><p>Yours faithfully,<br/>________________</p></div>",
+      "contentFormat" : "HTML",
+      "autoPopulatedFields" : [ "DATE", "AMOUNT" ],
+      "tokenCatalog" : "DATE,BRANCH_NAME,CURRENCY,AMOUNT,BENEFICIARY_NAME,REMITTER_NAME"
+    },
+    "tooltipLabel" : "Supporting Document",
+    "tooltipContent" : "<ul>\r\n    <li>\r\n        If the overseas investment account is less than one year old, provide <strong>any one</strong> of the following:\r\n        <ul>\r\n            <li>Other bank account statement for the last one year</li>\r\n            <li>Income Tax Assessment Order</li>\r\n            <li>Latest Income Tax Return (ITR) filed</li>\r\n        </ul>\r\n    </li>\r\n    <li>\r\n        Submit the signed declaration in the prescribed format:\r\n        <strong>Overseas Portfolio Investment under Liberalised Remittance Scheme</strong>.\r\n    </li>\r\n    <li>\r\n        Submit documentary evidence supporting the purpose of the investment.\r\n    </li>\r\n</ul>"
+  } ],
+  "additionalFields" : null,
+  "customerResponse" : null,
+  "accountDetails" : null
+}
+
+---
+
+# Sample request / response — every purpose code
+
+> Same envelope as the S0001 capture above. Fill `requestId`/`sessionId`/`ipAddress`/`userId` per session.
+> `accountAgeMonths` comes from the **matched SSO/360 account** (§2). Declaration inputs (`recvCurrency`, `transactionAmount`, `applicantName`, `beneficiaryName`, `branchName`, `branchAddress`, `AccountNumber`, `sourceOfIncome`, `place`, `declarationFields.INVESTEE_ENTITY`) are optional — when present they fill the `{{TOKEN}}`s; when absent the token renders as `________________` (as in the S0001 capture, which sent none). Declaration HTML below matches `CRF_26-27-113_AU_Declaration_UPDATE.sql`.
+
+## S0002 — Portfolio (Debt) · WEB · account < 1 yr (LT1Y) · amount 14000
+req
+```json
+{
+  "requestId": "REQ1784028900002",
+  "requestType": "PURPOSEADDLDOC",
+  "channelId": "WEB",
+  "clientId": "AU",
+  "groupId": "AU",
+  "sessionId": "SESSION1234567890",
+  "ipAddress": "127.0.0.1",
+  "userId": "7229119248",
+  "channel": "WEB",
+  "customerType": "ETB",
+  "purposeCode": "S0002",
+  "amountUsd": "14000",
+  "accountAgeMonths": "8",
+  "recvCurrency": "USD",
+  "transactionAmount": "14000",
+  "applicantName": "Ravi Kumar",
+  "beneficiaryName": "XYZ Global Debt Fund",
+  "branchName": "Andheri East",
+  "declarationFields": { "INVESTEE_ENTITY": "XYZ Global Debt Fund" }
+}
+```
+resp
+```json
+{
+  "responseId" : "57529910",
+  "requestId" : "REQ1784028900002",
+  "responseType" : "PURPOSEADDLDOC",
+  "groupId" : "AU",
+  "token" : null,
+  "status" : "S",
+  "message" : null,
+  "errorCode" : null,
+  "errorMessage" : null,
+  "errorList" : null,
+  "userRefIdInfo" : null,
+  "responseData" : [ {
+    "purposeCode" : "S0002",
+    "purposeName" : "Indian Portfolio Investment Abroad - Debt Instruments",
+    "rbiPurposeCode" : "P0002",
+    "stream" : "US1",
+    "channel" : "WEB",
+    "customerType" : "ETB",
+    "amountBand" : "ALL",
+    "accountAgeBand" : "LT1Y",
+    "eligible" : true,
+    "documents" : [ {
+      "docType" : "OTHER_BANK_STMT_1Y",
+      "label" : "Other bank account one-year statement",
+      "description" : "Account is less than one year old - provide any one of these.",
+      "mandatory" : true,
+      "oneOfGroup" : "1"
+    }, {
+      "docType" : "ITR_ASSESSMENT_ORDER",
+      "label" : "Income Tax Assessment Order",
+      "description" : "Account is less than one year old - provide any one of these.",
+      "mandatory" : true,
+      "oneOfGroup" : "1"
+    }, {
+      "docType" : "ITR_LATEST_RETURN",
+      "label" : "Latest Income Tax Return filed",
+      "description" : "Account is less than one year old - provide any one of these.",
+      "mandatory" : true,
+      "oneOfGroup" : "1"
+    }, {
+      "docType" : "INVESTMENT_EVIDENCE",
+      "label" : "Documentary evidence for the purpose of investment",
+      "description" : null,
+      "mandatory" : true,
+      "oneOfGroup" : null
+    } ],
+    "declaration" : {
+      "required" : true,
+      "declarationCode" : "AU_DECL_S0002",
+      "title" : "Overseas Portfolio Investment - Self-Declaration",
+      "acceptCheckboxRequired" : true,
+      "prefill" : true,
+      "content" : "<div class=\"au-declaration\"><p><strong>Overseas Portfolio Investment under Liberalised Remittance Scheme</strong><br/>Self-Declaration by Remitter</p><p>Date: 14-Jul-2026</p><p>The Branch Manager,<br/>AU Small Finance Bank Limited,<br/>Andheri East Branch</p><p>Dear Sir,</p><p>With reference to my request for outward remittance of USD 14000 (foreign currency &amp; amount) to XYZ Global Debt Fund (beneficiary name) for Overseas Portfolio investment under Liberalised Remittance Scheme, I hereby confirm and declare as under &ndash;</p><ol><li>The proposed remittance as above, is in compliance with Schedule III and Schedule V of Foreign Exchange Management (Overseas Investment) Rules, 2022.</li><li>The above remittance is towards my Overseas Portfolio Investment in M/s XYZ Global Debt Fund (name of the investee company/entity).</li><li>The remittance strictly adheres to the Overseas Investment rules so as to qualify as portfolio investment and not otherwise; I do not hold a controlling stake in the investee entity, directly or indirectly.</li><li>I have not subscribed and am not subscribing to the Memorandum of Association of above-named investee company/entity.</li><li>The above-named investee company/entity is not a Joint Venture or Wholly Owned Subsidiary of mine where I have acquired / plan to acquire a majority stake.</li><li>The foreign entity is engaged in non-financial activities.</li><li>Investment will be subject to the LRS limit as prescribed under the Liberalised Remittance Scheme.</li><li>I agree that I shall be responsible and liable for any incorrect detail provided by me.</li></ol><p>I am aware that any wrong declaration made above amounts to willful contravention of the provisions of FEMA, 1999.</p><p>Yours faithfully,<br/>Ravi Kumar</p></div>",
+      "contentFormat" : "HTML",
+      "autoPopulatedFields" : [ "DATE", "BRANCH_NAME", "CURRENCY", "AMOUNT", "BENEFICIARY_NAME", "INVESTEE_ENTITY", "REMITTER_NAME" ],
+      "tokenCatalog" : "DATE,BRANCH_NAME,CURRENCY,AMOUNT,BENEFICIARY_NAME,INVESTEE_ENTITY,REMITTER_NAME"
+    },
+    "tooltipLabel" : "Supporting Document",
+    "tooltipContent" : null
+  } ],
+  "additionalFields" : null,
+  "customerResponse" : null,
+  "accountDetails" : null
+}
+```
+### S0002 — WEB · account ≥ 1 yr (GE1Y) · amount 14000
+req
+```json
+{
+  "requestId": "REQ1784028900012",
+  "requestType": "PURPOSEADDLDOC",
+  "channelId": "WEB",
+  "clientId": "AU",
+  "groupId": "AU",
+  "sessionId": "SESSION1234567890",
+  "ipAddress": "127.0.0.1",
+  "userId": "7229119248",
+  "channel": "WEB",
+  "customerType": "ETB",
+  "purposeCode": "S0002",
+  "amountUsd": "14000",
+  "accountAgeMonths": "20",
+  "recvCurrency": "USD",
+  "transactionAmount": "14000",
+  "applicantName": "Ravi Kumar",
+  "beneficiaryName": "XYZ Global Debt Fund",
+  "branchName": "Andheri East",
+  "declarationFields": { "INVESTEE_ENTITY": "XYZ Global Debt Fund" }
+}
+```
+resp
+```json
+{
+  "responseId" : "57529911",
+  "requestId" : "REQ1784028900012",
+  "responseType" : "PURPOSEADDLDOC",
+  "groupId" : "AU",
+  "token" : null,
+  "status" : "S",
+  "message" : null,
+  "errorCode" : null,
+  "errorMessage" : null,
+  "errorList" : null,
+  "userRefIdInfo" : null,
+  "responseData" : [ {
+    "purposeCode" : "S0002",
+    "purposeName" : "Indian Portfolio Investment Abroad - Debt Instruments",
+    "rbiPurposeCode" : "P0002",
+    "stream" : "US1",
+    "channel" : "WEB",
+    "customerType" : "ETB",
+    "amountBand" : "ALL",
+    "accountAgeBand" : "GE1Y",
+    "eligible" : true,
+    "documents" : [ {
+      "docType" : "INVESTMENT_EVIDENCE",
+      "label" : "Documentary evidence for the purpose of investment",
+      "description" : null,
+      "mandatory" : true,
+      "oneOfGroup" : null
+    } ],
+    "declaration" : {
+      "required" : true,
+      "declarationCode" : "AU_DECL_S0002",
+      "title" : "Overseas Portfolio Investment - Self-Declaration",
+      "acceptCheckboxRequired" : true,
+      "prefill" : true,
+      "content" : "<div class=\"au-declaration\">... (identical HTML to the S0002 LT1Y sample above) ...</div>",
+      "contentFormat" : "HTML",
+      "autoPopulatedFields" : [ "DATE", "BRANCH_NAME", "CURRENCY", "AMOUNT", "BENEFICIARY_NAME", "INVESTEE_ENTITY", "REMITTER_NAME" ],
+      "tokenCatalog" : "DATE,BRANCH_NAME,CURRENCY,AMOUNT,BENEFICIARY_NAME,INVESTEE_ENTITY,REMITTER_NAME"
+    },
+    "tooltipLabel" : "Supporting Document",
+    "tooltipContent" : null
+  } ],
+  "additionalFields" : null,
+  "customerResponse" : null,
+  "accountDetails" : null
+}
+```
+> The statement/ITR "one-of" group only appears in the `LT1Y` band; at `GE1Y` only the all-amount `INVESTMENT_EVIDENCE` remains. Declaration content is band-independent (same as the LT1Y block).
+
+## S0005 — Real Estate · WEB · account < 1 yr (LT1Y) · amount 14000 · NO declaration
+req
+```json
+{
+  "requestId": "REQ1784028900005",
+  "requestType": "PURPOSEADDLDOC",
+  "channelId": "WEB",
+  "clientId": "AU",
+  "groupId": "AU",
+  "sessionId": "SESSION1234567890",
+  "ipAddress": "127.0.0.1",
+  "userId": "7229119248",
+  "channel": "WEB",
+  "customerType": "ETB",
+  "purposeCode": "S0005",
+  "amountUsd": "14000",
+  "accountAgeMonths": "8"
+}
+```
+resp
+```json
+{
+  "responseId" : "57529913",
+  "requestId" : "REQ1784028900005",
+  "responseType" : "PURPOSEADDLDOC",
+  "groupId" : "AU",
+  "token" : null,
+  "status" : "S",
+  "message" : null,
+  "errorCode" : null,
+  "errorMessage" : null,
+  "errorList" : null,
+  "userRefIdInfo" : null,
+  "responseData" : [ {
+    "purposeCode" : "S0005",
+    "purposeName" : "Indian Portfolio Investment Abroad - Real Estate",
+    "rbiPurposeCode" : "P0005",
+    "stream" : "US1",
+    "channel" : "WEB",
+    "customerType" : "ETB",
+    "amountBand" : "ALL",
+    "accountAgeBand" : "LT1Y",
+    "eligible" : true,
+    "documents" : [ {
+      "docType" : "OTHER_BANK_STMT_1Y",
+      "label" : "Other bank account one-year statement",
+      "description" : "Account is less than one year old - provide any one of these.",
+      "mandatory" : true,
+      "oneOfGroup" : "1"
+    }, {
+      "docType" : "ITR_ASSESSMENT_ORDER",
+      "label" : "Income Tax Assessment Order",
+      "description" : "Account is less than one year old - provide any one of these.",
+      "mandatory" : true,
+      "oneOfGroup" : "1"
+    }, {
+      "docType" : "ITR_LATEST_RETURN",
+      "label" : "Latest Income Tax Return filed",
+      "description" : "Account is less than one year old - provide any one of these.",
+      "mandatory" : true,
+      "oneOfGroup" : "1"
+    }, {
+      "docType" : "REAL_ESTATE_EVIDENCE",
+      "label" : "Documentary evidence of investment in real estate",
+      "description" : "Agreement copy / sale deed or any other underlying document evidencing payment is for purchase of real estate abroad.",
+      "mandatory" : true,
+      "oneOfGroup" : null
+    } ],
+    "declaration" : {
+      "required" : false
+    },
+    "tooltipLabel" : "Supporting Document",
+    "tooltipContent" : null
+  } ],
+  "additionalFields" : null,
+  "customerResponse" : null,
+  "accountDetails" : null
+}
+```
+### S0005 — WEB · account ≥ 1 yr (GE1Y) · amount 14000 · NO declaration
+req
+```json
+{
+  "requestId": "REQ1784028900015",
+  "requestType": "PURPOSEADDLDOC",
+  "channelId": "WEB",
+  "clientId": "AU",
+  "groupId": "AU",
+  "sessionId": "SESSION1234567890",
+  "ipAddress": "127.0.0.1",
+  "userId": "7229119248",
+  "channel": "WEB",
+  "customerType": "ETB",
+  "purposeCode": "S0005",
+  "amountUsd": "14000",
+  "accountAgeMonths": "20"
+}
+```
+resp
+```json
+{
+  "responseId" : "57529914",
+  "requestId" : "REQ1784028900015",
+  "responseType" : "PURPOSEADDLDOC",
+  "groupId" : "AU",
+  "token" : null,
+  "status" : "S",
+  "message" : null,
+  "errorCode" : null,
+  "errorMessage" : null,
+  "errorList" : null,
+  "userRefIdInfo" : null,
+  "responseData" : [ {
+    "purposeCode" : "S0005",
+    "purposeName" : "Indian Portfolio Investment Abroad - Real Estate",
+    "rbiPurposeCode" : "P0005",
+    "stream" : "US1",
+    "channel" : "WEB",
+    "customerType" : "ETB",
+    "amountBand" : "ALL",
+    "accountAgeBand" : "GE1Y",
+    "eligible" : true,
+    "documents" : [ {
+      "docType" : "REAL_ESTATE_EVIDENCE",
+      "label" : "Documentary evidence of investment in real estate",
+      "description" : "Agreement copy / sale deed or any other underlying document evidencing payment is for purchase of real estate abroad.",
+      "mandatory" : true,
+      "oneOfGroup" : null
+    } ],
+    "declaration" : {
+      "required" : false
+    },
+    "tooltipLabel" : "Supporting Document",
+    "tooltipContent" : null
+  } ],
+  "additionalFields" : null,
+  "customerResponse" : null,
+  "accountDetails" : null
+}
+```
+> At `GE1Y` the statement/ITR "one-of" group drops out; only the all-amount `REAL_ESTATE_EVIDENCE` remains.
+
+## S0023 — Own foreign account · WEB · account < 1 yr (LT1Y) · amount 14000 · NO declaration
+req
+```json
+{
+  "requestId": "REQ1784028900023",
+  "requestType": "PURPOSEADDLDOC",
+  "channelId": "WEB",
+  "clientId": "AU",
+  "groupId": "AU",
+  "sessionId": "SESSION1234567890",
+  "ipAddress": "127.0.0.1",
+  "userId": "7229119248",
+  "channel": "WEB",
+  "customerType": "ETB",
+  "purposeCode": "S0023",
+  "amountUsd": "14000",
+  "accountAgeMonths": "8"
+}
+```
+resp
+```json
+{
+  "responseId" : "57529915",
+  "requestId" : "REQ1784028900023",
+  "responseType" : "PURPOSEADDLDOC",
+  "groupId" : "AU",
+  "token" : null,
+  "status" : "S",
+  "message" : null,
+  "errorCode" : null,
+  "errorMessage" : null,
+  "errorList" : null,
+  "userRefIdInfo" : null,
+  "responseData" : [ {
+    "purposeCode" : "S0023",
+    "purposeName" : "Opening of foreign currency account abroad with a bank",
+    "rbiPurposeCode" : "P0023",
+    "stream" : "US1",
+    "channel" : "WEB",
+    "customerType" : "ETB",
+    "amountBand" : "ALL",
+    "accountAgeBand" : "LT1Y",
+    "eligible" : true,
+    "documents" : [ {
+      "docType" : "OTHER_BANK_STMT_1Y",
+      "label" : "Certified copy of one-year statement of accounts with another bank in India",
+      "description" : "Account is less than one year old - provide any one of these.",
+      "mandatory" : true,
+      "oneOfGroup" : "1"
+    }, {
+      "docType" : "ITR_LAST_RETURN",
+      "label" : "Copy of last IT return filed with IT authorities",
+      "description" : "Account is less than one year old - provide any one of these.",
+      "mandatory" : true,
+      "oneOfGroup" : "1"
+    } ],
+    "declaration" : {
+      "required" : false
+    },
+    "tooltipLabel" : "Supporting Document",
+    "tooltipContent" : null
+  } ],
+  "additionalFields" : null,
+  "customerResponse" : null,
+  "accountDetails" : null
+}
+```
+### S0023 — WEB · account ≥ 1 yr (GE1Y) · amount 14000 · NO declaration
+req
+```json
+{
+  "requestId": "REQ1784028900123",
+  "requestType": "PURPOSEADDLDOC",
+  "channelId": "WEB",
+  "clientId": "AU",
+  "groupId": "AU",
+  "sessionId": "SESSION1234567890",
+  "ipAddress": "127.0.0.1",
+  "userId": "7229119248",
+  "channel": "WEB",
+  "customerType": "ETB",
+  "purposeCode": "S0023",
+  "amountUsd": "14000",
+  "accountAgeMonths": "20"
+}
+```
+resp
+```json
+{
+  "responseId" : "57529916",
+  "requestId" : "REQ1784028900123",
+  "responseType" : "PURPOSEADDLDOC",
+  "groupId" : "AU",
+  "token" : null,
+  "status" : "S",
+  "message" : null,
+  "errorCode" : null,
+  "errorMessage" : null,
+  "errorList" : null,
+  "userRefIdInfo" : null,
+  "responseData" : [ {
+    "purposeCode" : "S0023",
+    "purposeName" : "Opening of foreign currency account abroad with a bank",
+    "rbiPurposeCode" : "P0023",
+    "stream" : "US1",
+    "channel" : "WEB",
+    "customerType" : "ETB",
+    "amountBand" : "ALL",
+    "accountAgeBand" : "GE1Y",
+    "eligible" : true,
+    "documents" : [ ],
+    "declaration" : {
+      "required" : false
+    },
+    "tooltipLabel" : "Supporting Document",
+    "tooltipContent" : null
+  } ],
+  "additionalFields" : null,
+  "customerResponse" : null,
+  "accountDetails" : null
+}
+```
+> At `GE1Y` no documents are required for S0023 (the statement/ITR one-of only applies while the account is under a year old).
+
+## S0603 — General / Term-Life Insurance · WEB · amount 40000 (> 25000 → GT)
+req
+```json
+{
+  "requestId": "REQ1784028900603",
+  "requestType": "PURPOSEADDLDOC",
+  "channelId": "WEB",
+  "clientId": "AU",
+  "groupId": "AU",
+  "sessionId": "SESSION1234567890",
+  "ipAddress": "127.0.0.1",
+  "userId": "7229119248",
+  "channel": "WEB",
+  "customerType": "ETB",
+  "purposeCode": "S0603",
+  "amountUsd": "40000",
+  "transactionAmount": "40000",
+  "recvCurrency": "USD",
+  "applicantName": "Ravi Kumar",
+  "AccountNumber": "1234500001",
+  "branchName": "Andheri East",
+  "branchAddress": "Andheri East, Mumbai 400069"
+}
+```
+resp
+```json
+{
+  "responseId" : "57529918",
+  "requestId" : "REQ1784028900603",
+  "responseType" : "PURPOSEADDLDOC",
+  "groupId" : "AU",
+  "token" : null,
+  "status" : "S",
+  "message" : null,
+  "errorCode" : null,
+  "errorMessage" : null,
+  "errorList" : null,
+  "userRefIdInfo" : null,
+  "responseData" : [ {
+    "purposeCode" : "S0603",
+    "purposeName" : "General / Term-Life Insurance Premium",
+    "rbiPurposeCode" : "P0603",
+    "stream" : "US2",
+    "channel" : "WEB",
+    "customerType" : "ETB",
+    "amountBand" : "GT",
+    "accountAgeBand" : "ALL",
+    "eligible" : true,
+    "documents" : [ {
+      "docType" : "INSURANCE_POLICY",
+      "label" : "Underlying document / insurance policy",
+      "description" : "Required for remittances above USD 25,000.",
+      "mandatory" : true,
+      "oneOfGroup" : null
+    } ],
+    "declaration" : {
+      "required" : true,
+      "declarationCode" : "AU_DECL_S0603",
+      "title" : "General Insurance Declaration",
+      "acceptCheckboxRequired" : true,
+      "prefill" : true,
+      "content" : "<div class=\"au-declaration\"><p><strong>Declaration</strong><br/>(To be made by Resident Individual in case of Term Life Insurance premium, Other General Insurance Premium including Re-insurance Premium being remitted outside India)</p><p>Date: 14-Jul-2026</p><p>To,<br/>The Branch Manager,<br/>AU Small Finance Bank Limited<br/>Andheri East, Mumbai 400069</p><p>Dear Sir/Madam,</p><p>I am maintaining a Resident saving account in the name of Ravi Kumar having account no. 1234500001 in AU Bank&rsquo;s Andheri East Branch.</p><p>I hereby declare that I shall repatriate to India through normal banking channels the amount of any claim due on the policy, within a period of seven days from the receipt thereof.</p><p>Yours sincerely,<br/>Ravi Kumar</p></div>",
+      "contentFormat" : "HTML",
+      "autoPopulatedFields" : [ "DATE", "BRANCH_ADDRESS", "ACCOUNT_HOLDER_NAME", "ACCOUNT_NUMBER", "BRANCH_NAME", "CUSTOMER_NAME" ],
+      "tokenCatalog" : "DATE,BRANCH_ADDRESS,ACCOUNT_HOLDER_NAME,ACCOUNT_NUMBER,BRANCH_NAME,CUSTOMER_NAME"
+    },
+    "tooltipLabel" : "Supporting Document",
+    "tooltipContent" : null
+  } ],
+  "additionalFields" : null,
+  "customerResponse" : null,
+  "accountDetails" : null
+}
+```
+### S0603 — WEB · amount 20000 (≤ 25000 → LE)
+req
+```json
+{
+  "requestId": "REQ1784028900613",
+  "requestType": "PURPOSEADDLDOC",
+  "channelId": "WEB",
+  "clientId": "AU",
+  "groupId": "AU",
+  "sessionId": "SESSION1234567890",
+  "ipAddress": "127.0.0.1",
+  "userId": "7229119248",
+  "channel": "WEB",
+  "customerType": "ETB",
+  "purposeCode": "S0603",
+  "amountUsd": "20000",
+  "transactionAmount": "20000",
+  "recvCurrency": "USD",
+  "applicantName": "Ravi Kumar",
+  "AccountNumber": "1234500001",
+  "branchName": "Andheri East",
+  "branchAddress": "Andheri East, Mumbai 400069"
+}
+```
+resp
+```json
+{
+  "responseId" : "57529919",
+  "requestId" : "REQ1784028900613",
+  "responseType" : "PURPOSEADDLDOC",
+  "groupId" : "AU",
+  "token" : null,
+  "status" : "S",
+  "message" : null,
+  "errorCode" : null,
+  "errorMessage" : null,
+  "errorList" : null,
+  "userRefIdInfo" : null,
+  "responseData" : [ {
+    "purposeCode" : "S0603",
+    "purposeName" : "General / Term-Life Insurance Premium",
+    "rbiPurposeCode" : "P0603",
+    "stream" : "US2",
+    "channel" : "WEB",
+    "customerType" : "ETB",
+    "amountBand" : "LE",
+    "accountAgeBand" : "ALL",
+    "eligible" : true,
+    "documents" : [ ],
+    "declaration" : {
+      "required" : true,
+      "declarationCode" : "AU_DECL_S0603",
+      "title" : "General Insurance Declaration",
+      "acceptCheckboxRequired" : true,
+      "prefill" : true,
+      "content" : "<div class=\"au-declaration\">... (identical HTML to the S0603 GT sample above, with AMOUNT = 20000) ...</div>",
+      "contentFormat" : "HTML",
+      "autoPopulatedFields" : [ "DATE", "BRANCH_ADDRESS", "ACCOUNT_HOLDER_NAME", "ACCOUNT_NUMBER", "BRANCH_NAME", "CUSTOMER_NAME" ],
+      "tokenCatalog" : "DATE,BRANCH_ADDRESS,ACCOUNT_HOLDER_NAME,ACCOUNT_NUMBER,BRANCH_NAME,CUSTOMER_NAME"
+    },
+    "tooltipLabel" : "Supporting Document",
+    "tooltipContent" : null
+  } ],
+  "additionalFields" : null,
+  "customerResponse" : null,
+  "accountDetails" : null
+}
+```
+> At `LE` (≤ 25000) the underlying policy is not required — declaration only. `INSURANCE_POLICY` appears only in the `GT` band.
+
+## S0306 — Other Travel · WEB · amount 40000 (> 25000 → GT)
+req
+```json
+{
+  "requestId": "REQ1784028900306",
+  "requestType": "PURPOSEADDLDOC",
+  "channelId": "WEB",
+  "clientId": "AU",
+  "groupId": "AU",
+  "sessionId": "SESSION1234567890",
+  "ipAddress": "127.0.0.1",
+  "userId": "7229119248",
+  "channel": "WEB",
+  "customerType": "ETB",
+  "purposeCode": "S0306",
+  "amountUsd": "40000",
+  "transactionAmount": "40000",
+  "applicantName": "Ravi Kumar",
+  "branchAddress": "Andheri East, Mumbai 400069"
+}
+```
+resp
+```json
+{
+  "responseId" : "57529921",
+  "requestId" : "REQ1784028900306",
+  "responseType" : "PURPOSEADDLDOC",
+  "groupId" : "AU",
+  "token" : null,
+  "status" : "S",
+  "message" : null,
+  "errorCode" : null,
+  "errorMessage" : null,
+  "errorList" : null,
+  "userRefIdInfo" : null,
+  "responseData" : [ {
+    "purposeCode" : "S0306",
+    "purposeName" : "Other Travel (settlement of international credit card transactions)",
+    "rbiPurposeCode" : "P0306",
+    "stream" : "US2",
+    "channel" : "WEB",
+    "customerType" : "ETB",
+    "amountBand" : "GT",
+    "accountAgeBand" : "ALL",
+    "eligible" : true,
+    "documents" : [ {
+      "docType" : "TRAVEL_SUPPORTING_DOC",
+      "label" : "Overseas travel supporting document",
+      "description" : "Invoice of overseas travel agent / mail communication from overseas entity / invoice / copy of visa / ticket or any similar supporting travel document. Required above USD 25,000.",
+      "mandatory" : true,
+      "oneOfGroup" : null
+    } ],
+    "declaration" : {
+      "required" : true,
+      "declarationCode" : "AU_DECL_S0306",
+      "title" : "Other Travel Declaration",
+      "acceptCheckboxRequired" : true,
+      "prefill" : true,
+      "content" : "<div class=\"au-declaration\"><p><strong>Declaration for processing Other Travel (Payments for settling international credit cards transactions).</strong></p><p>Date: 14-Jul-2026</p><p>To,<br/>The Branch Manager,<br/>AU Small Finance Bank Limited<br/>Andheri East, Mumbai 400069</p><p>Dear Sir/Mam,</p><p>I hereby undertake that for the remittance of amount 40000 under purpose code S0306 - Other Travel (Payments for settling international credit cards transactions), I have not utilized the international credit card in Nepal or Bhutan OR for any transaction with a person resident in Nepal or Bhutan.</p><p>I confirm that the remittance is made directly to the Bank issuing the card or to the Collection agency appointed by the bank.</p><p>Yours sincerely,<br/>Ravi Kumar</p></div>",
+      "contentFormat" : "HTML",
+      "autoPopulatedFields" : [ "DATE", "BRANCH_ADDRESS", "AMOUNT", "CUSTOMER_NAME" ],
+      "tokenCatalog" : "DATE,BRANCH_ADDRESS,AMOUNT,CUSTOMER_NAME"
+    },
+    "tooltipLabel" : "Supporting Document",
+    "tooltipContent" : null
+  } ],
+  "additionalFields" : null,
+  "customerResponse" : null,
+  "accountDetails" : null
+}
+```
+### S0306 — WEB · amount 20000 (≤ 25000 → LE)
+req
+```json
+{
+  "requestId": "REQ1784028900316",
+  "requestType": "PURPOSEADDLDOC",
+  "channelId": "WEB",
+  "clientId": "AU",
+  "groupId": "AU",
+  "sessionId": "SESSION1234567890",
+  "ipAddress": "127.0.0.1",
+  "userId": "7229119248",
+  "channel": "WEB",
+  "customerType": "ETB",
+  "purposeCode": "S0306",
+  "amountUsd": "20000",
+  "transactionAmount": "20000",
+  "applicantName": "Ravi Kumar",
+  "branchAddress": "Andheri East, Mumbai 400069"
+}
+```
+resp
+```json
+{
+  "responseId" : "57529922",
+  "requestId" : "REQ1784028900316",
+  "responseType" : "PURPOSEADDLDOC",
+  "groupId" : "AU",
+  "token" : null,
+  "status" : "S",
+  "message" : null,
+  "errorCode" : null,
+  "errorMessage" : null,
+  "errorList" : null,
+  "userRefIdInfo" : null,
+  "responseData" : [ {
+    "purposeCode" : "S0306",
+    "purposeName" : "Other Travel (settlement of international credit card transactions)",
+    "rbiPurposeCode" : "P0306",
+    "stream" : "US2",
+    "channel" : "WEB",
+    "customerType" : "ETB",
+    "amountBand" : "LE",
+    "accountAgeBand" : "ALL",
+    "eligible" : true,
+    "documents" : [ ],
+    "declaration" : {
+      "required" : true,
+      "declarationCode" : "AU_DECL_S0306",
+      "title" : "Other Travel Declaration",
+      "acceptCheckboxRequired" : true,
+      "prefill" : true,
+      "content" : "<div class=\"au-declaration\">... (identical HTML to the S0306 GT sample above, with amount 20000) ...</div>",
+      "contentFormat" : "HTML",
+      "autoPopulatedFields" : [ "DATE", "BRANCH_ADDRESS", "AMOUNT", "CUSTOMER_NAME" ],
+      "tokenCatalog" : "DATE,BRANCH_ADDRESS,AMOUNT,CUSTOMER_NAME"
+    },
+    "tooltipLabel" : "Supporting Document",
+    "tooltipContent" : null
+  } ],
+  "additionalFields" : null,
+  "customerResponse" : null,
+  "accountDetails" : null
+}
+```
+> At `LE` (≤ 25000) no travel document is required — declaration only. `TRAVEL_SUPPORTING_DOC` appears only in the `GT` band.
+
+## S1307 — Emigration · WEB · amount 40000 (> 25000 → GT)
+req
+```json
+{
+  "requestId": "REQ1784028901307",
+  "requestType": "PURPOSEADDLDOC",
+  "channelId": "WEB",
+  "clientId": "AU",
+  "groupId": "AU",
+  "sessionId": "SESSION1234567890",
+  "ipAddress": "127.0.0.1",
+  "userId": "7229119248",
+  "channel": "WEB",
+  "customerType": "ETB",
+  "purposeCode": "S1307",
+  "amountUsd": "40000",
+  "transactionAmount": "40000",
+  "applicantName": "Ravi Kumar",
+  "branchAddress": "Andheri East, Mumbai 400069"
+}
+```
+resp
+```json
+{
+  "responseId" : "57529924",
+  "requestId" : "REQ1784028901307",
+  "responseType" : "PURPOSEADDLDOC",
+  "groupId" : "AU",
+  "token" : null,
+  "status" : "S",
+  "message" : null,
+  "errorCode" : null,
+  "errorMessage" : null,
+  "errorList" : null,
+  "userRefIdInfo" : null,
+  "responseData" : [ {
+    "purposeCode" : "S1307",
+    "purposeName" : "Emigration",
+    "rbiPurposeCode" : "P1307",
+    "stream" : "US2",
+    "channel" : "WEB",
+    "customerType" : "ETB",
+    "amountBand" : "GT",
+    "accountAgeBand" : "ALL",
+    "eligible" : true,
+    "documents" : [ {
+      "docType" : "EMIGRATION_EVIDENCE",
+      "label" : "Underlying document evidencing payment towards emigration",
+      "description" : "Required for remittances above USD 25,000.",
+      "mandatory" : true,
+      "oneOfGroup" : null
+    } ],
+    "declaration" : {
+      "required" : true,
+      "declarationCode" : "AU_DECL_S1307",
+      "title" : "Emigration Declaration",
+      "acceptCheckboxRequired" : true,
+      "prefill" : true,
+      "content" : "<div class=\"au-declaration\"><p><strong>Declaration for Emigration abroad</strong></p><p>Date: 14-Jul-2026</p><p>To,<br/>The Branch Manager,<br/>AU Small Finance Bank Limited<br/>Andheri East, Mumbai 400069</p><p>Dear Sir/Mam,</p><p>I hereby confirm that the remittance of amount 40000 initiated by me under purpose code S1307 - Emigration abroad is to meet the incidental and living expenses in the country of emigration / employment and not for undertaking any capital account transactions such as overseas investment in government bonds, land, commercial enterprise, etc., and is not intended for earning points or credits for emigration.</p><p>I confirm that no amount of foreign exchange will be remitted outside India to become eligible for, or for earning points or credits for, immigration.</p><p>Yours sincerely,<br/>Ravi Kumar</p></div>",
+      "contentFormat" : "HTML",
+      "autoPopulatedFields" : [ "DATE", "BRANCH_ADDRESS", "AMOUNT", "CUSTOMER_NAME" ],
+      "tokenCatalog" : "DATE,BRANCH_ADDRESS,AMOUNT,CUSTOMER_NAME"
+    },
+    "tooltipLabel" : "Supporting Document",
+    "tooltipContent" : null
+  } ],
+  "additionalFields" : null,
+  "customerResponse" : null,
+  "accountDetails" : null
+}
+```
+### S1307 — WEB · amount 20000 (≤ 25000 → LE)
+req
+```json
+{
+  "requestId": "REQ1784028901037",
+  "requestType": "PURPOSEADDLDOC",
+  "channelId": "WEB",
+  "clientId": "AU",
+  "groupId": "AU",
+  "sessionId": "SESSION1234567890",
+  "ipAddress": "127.0.0.1",
+  "userId": "7229119248",
+  "channel": "WEB",
+  "customerType": "ETB",
+  "purposeCode": "S1307",
+  "amountUsd": "20000",
+  "transactionAmount": "20000",
+  "applicantName": "Ravi Kumar",
+  "branchAddress": "Andheri East, Mumbai 400069"
+}
+```
+resp
+```json
+{
+  "responseId" : "57529925",
+  "requestId" : "REQ1784028901037",
+  "responseType" : "PURPOSEADDLDOC",
+  "groupId" : "AU",
+  "token" : null,
+  "status" : "S",
+  "message" : null,
+  "errorCode" : null,
+  "errorMessage" : null,
+  "errorList" : null,
+  "userRefIdInfo" : null,
+  "responseData" : [ {
+    "purposeCode" : "S1307",
+    "purposeName" : "Emigration",
+    "rbiPurposeCode" : "P1307",
+    "stream" : "US2",
+    "channel" : "WEB",
+    "customerType" : "ETB",
+    "amountBand" : "LE",
+    "accountAgeBand" : "ALL",
+    "eligible" : true,
+    "documents" : [ ],
+    "declaration" : {
+      "required" : true,
+      "declarationCode" : "AU_DECL_S1307",
+      "title" : "Emigration Declaration",
+      "acceptCheckboxRequired" : true,
+      "prefill" : true,
+      "content" : "<div class=\"au-declaration\">... (identical HTML to the S1307 GT sample above, with amount 20000) ...</div>",
+      "contentFormat" : "HTML",
+      "autoPopulatedFields" : [ "DATE", "BRANCH_ADDRESS", "AMOUNT", "CUSTOMER_NAME" ],
+      "tokenCatalog" : "DATE,BRANCH_ADDRESS,AMOUNT,CUSTOMER_NAME"
+    },
+    "tooltipLabel" : "Supporting Document",
+    "tooltipContent" : null
+  } ],
+  "additionalFields" : null,
+  "customerResponse" : null,
+  "accountDetails" : null
+}
+```
+> At `LE` (≤ 25000) no emigration evidence is required — declaration only. `EMIGRATION_EVIDENCE` appears only in the `GT` band.
+
+## S1303 — Donation · WEB · amount 40000 (> 25000 → GT) · account < 6 mo (LT6M)
+req
+```json
+{
+  "requestId": "REQ1784028901303",
+  "requestType": "PURPOSEADDLDOC",
+  "channelId": "WEB",
+  "clientId": "AU",
+  "groupId": "AU",
+  "sessionId": "SESSION1234567890",
+  "ipAddress": "127.0.0.1",
+  "userId": "7229119248",
+  "channel": "WEB",
+  "customerType": "ETB",
+  "purposeCode": "S1303",
+  "amountUsd": "40000",
+  "transactionAmount": "40000",
+  "accountAgeMonths": "3",
+  "recvCurrency": "USD",
+  "applicantName": "Ravi Kumar",
+  "beneficiaryName": "Global Charity Foundation",
+  "branchName": "Andheri East",
+  "sourceOfIncome": "Salary",
+  "place": "Mumbai"
+}
+```
+resp
+```json
+{
+  "responseId" : "57529927",
+  "requestId" : "REQ1784028901303",
+  "responseType" : "PURPOSEADDLDOC",
+  "groupId" : "AU",
+  "token" : null,
+  "status" : "S",
+  "message" : null,
+  "errorCode" : null,
+  "errorMessage" : null,
+  "errorList" : null,
+  "userRefIdInfo" : null,
+  "responseData" : [ {
+    "purposeCode" : "S1303",
+    "purposeName" : "Donation",
+    "rbiPurposeCode" : "P1303",
+    "stream" : "US2",
+    "channel" : "WEB",
+    "customerType" : "ETB",
+    "amountBand" : "GT",
+    "accountAgeBand" : "LT6M",
+    "eligible" : true,
+    "documents" : [ {
+      "docType" : "OTHER_BANK_STMT_6M",
+      "label" : "6-month statement from another bank",
+      "description" : "AU SFB account vintage is less than 6 months - provide a 6-month statement from another bank to establish source of funds.",
+      "mandatory" : true,
+      "oneOfGroup" : null
+    }, {
+      "docType" : "DONATION_EVIDENCE",
+      "label" : "Document evidencing purpose of donation",
+      "description" : null,
+      "mandatory" : true,
+      "oneOfGroup" : null
+    } ],
+    "declaration" : {
+      "required" : true,
+      "declarationCode" : "AU_DECL_S1303",
+      "title" : "Donation Declaration (LRS)",
+      "acceptCheckboxRequired" : true,
+      "prefill" : true,
+      "content" : "<div class=\"au-declaration\"><p><strong>Outward Remittances under Liberalized Remittance Scheme</strong></p><p>The Branch Manager,<br/>AU Small Finance Bank Limited<br/>Andheri East</p><p>Dear Sir/Madam,</p><p>With reference to the proposed remittance of USD 40000 (&ldquo;Amount&rdquo;) to Mr/Ms Global Charity Foundation under the Liberalized Remittance Scheme of RBI, as donation, I Ravi Kumar hereby confirm and declare to the Bank that the amount being remitted:</p><ul><li>is not out of borrowed funds from financial institutions. The remittance is being made out of my income from Salary in India and is permitted under the provisions of FEMA, 1999.</li><li>is not to a person resident in India in foreign currency for the credit of the latter&rsquo;s foreign currency account held abroad under LRS.</li></ul><p>In the event it is subsequently found that the amount remitted was not a donation and is in contravention of FEMA, 1999, and that the overall annual limit under the Liberalized Remittance Scheme of RBI has been breached, I shall be liable and responsible for the contravention and the Bank may report this to the regulatory authorities.</p><p>Ravi Kumar<br/>(Name and Signature)<br/>Date: 14-Jul-2026<br/>Place: Mumbai</p></div>",
+      "contentFormat" : "HTML",
+      "autoPopulatedFields" : [ "DATE", "BRANCH_NAME", "CURRENCY", "AMOUNT", "BENEFICIARY_NAME", "REMITTER_NAME", "SOURCE_OF_INCOME", "PLACE" ],
+      "tokenCatalog" : "DATE,BRANCH_NAME,CURRENCY,AMOUNT,BENEFICIARY_NAME,REMITTER_NAME,SOURCE_OF_INCOME,PLACE"
+    },
+    "tooltipLabel" : "Supporting Document",
+    "tooltipContent" : null
+  } ],
+  "additionalFields" : null,
+  "customerResponse" : null,
+  "accountDetails" : null
+}
+```
+### S1303 — WEB · amount 40000 (GT) · account ≥ 6 mo (GE6M)
+req
+```json
+{
+  "requestId": "REQ1784028901313",
+  "requestType": "PURPOSEADDLDOC",
+  "channelId": "WEB",
+  "clientId": "AU",
+  "groupId": "AU",
+  "sessionId": "SESSION1234567890",
+  "ipAddress": "127.0.0.1",
+  "userId": "7229119248",
+  "channel": "WEB",
+  "customerType": "ETB",
+  "purposeCode": "S1303",
+  "amountUsd": "40000",
+  "transactionAmount": "40000",
+  "accountAgeMonths": "20",
+  "recvCurrency": "USD",
+  "applicantName": "Ravi Kumar",
+  "beneficiaryName": "Global Charity Foundation",
+  "branchName": "Andheri East",
+  "sourceOfIncome": "Salary",
+  "place": "Mumbai"
+}
+```
+resp
+```json
+{
+  "responseId" : "57529928",
+  "requestId" : "REQ1784028901313",
+  "responseType" : "PURPOSEADDLDOC",
+  "groupId" : "AU",
+  "token" : null,
+  "status" : "S",
+  "message" : null,
+  "errorCode" : null,
+  "errorMessage" : null,
+  "errorList" : null,
+  "userRefIdInfo" : null,
+  "responseData" : [ {
+    "purposeCode" : "S1303",
+    "purposeName" : "Donation",
+    "rbiPurposeCode" : "P1303",
+    "stream" : "US2",
+    "channel" : "WEB",
+    "customerType" : "ETB",
+    "amountBand" : "GT",
+    "accountAgeBand" : "GE6M",
+    "eligible" : true,
+    "documents" : [ {
+      "docType" : "DONATION_EVIDENCE",
+      "label" : "Document evidencing purpose of donation",
+      "description" : null,
+      "mandatory" : true,
+      "oneOfGroup" : null
+    } ],
+    "declaration" : {
+      "required" : true,
+      "declarationCode" : "AU_DECL_S1303",
+      "title" : "Donation Declaration (LRS)",
+      "acceptCheckboxRequired" : true,
+      "prefill" : true,
+      "content" : "<div class=\"au-declaration\">... (identical HTML to the S1303 LT6M sample above) ...</div>",
+      "contentFormat" : "HTML",
+      "autoPopulatedFields" : [ "DATE", "BRANCH_NAME", "CURRENCY", "AMOUNT", "BENEFICIARY_NAME", "REMITTER_NAME", "SOURCE_OF_INCOME", "PLACE" ],
+      "tokenCatalog" : "DATE,BRANCH_NAME,CURRENCY,AMOUNT,BENEFICIARY_NAME,REMITTER_NAME,SOURCE_OF_INCOME,PLACE"
+    },
+    "tooltipLabel" : "Supporting Document",
+    "tooltipContent" : null
+  } ],
+  "additionalFields" : null,
+  "customerResponse" : null,
+  "accountDetails" : null
+}
+```
+
+### S1303 — WEB · amount 20000 (LE) · account ≥ 6 mo (GE6M) — declaration only
+req: as above but `"amountUsd": "20000"`, `"transactionAmount": "20000"`.
+resp
+```json
+{
+  "responseId" : "57529929",
+  "requestId" : "REQ1784028901320",
+  "responseType" : "PURPOSEADDLDOC",
+  "groupId" : "AU",
+  "token" : null,
+  "status" : "S",
+  "message" : null,
+  "errorCode" : null,
+  "errorMessage" : null,
+  "errorList" : null,
+  "userRefIdInfo" : null,
+  "responseData" : [ {
+    "purposeCode" : "S1303",
+    "purposeName" : "Donation",
+    "rbiPurposeCode" : "P1303",
+    "stream" : "US2",
+    "channel" : "WEB",
+    "customerType" : "ETB",
+    "amountBand" : "LE",
+    "accountAgeBand" : "GE6M",
+    "eligible" : true,
+    "documents" : [ ],
+    "declaration" : {
+      "required" : true,
+      "declarationCode" : "AU_DECL_S1303",
+      "title" : "Donation Declaration (LRS)",
+      "acceptCheckboxRequired" : true,
+      "prefill" : true,
+      "content" : "<div class=\"au-declaration\">... (identical HTML to the S1303 LT6M sample above, with amount 20000) ...</div>",
+      "contentFormat" : "HTML",
+      "autoPopulatedFields" : [ "DATE", "BRANCH_NAME", "CURRENCY", "AMOUNT", "BENEFICIARY_NAME", "REMITTER_NAME", "SOURCE_OF_INCOME", "PLACE" ],
+      "tokenCatalog" : "DATE,BRANCH_NAME,CURRENCY,AMOUNT,BENEFICIARY_NAME,REMITTER_NAME,SOURCE_OF_INCOME,PLACE"
+    },
+    "tooltipLabel" : "Supporting Document",
+    "tooltipContent" : null
+  } ],
+  "additionalFields" : null,
+  "customerResponse" : null,
+  "accountDetails" : null
+}
+```
+> **S1303 full band matrix** (2 dimensions):
+> - `LT6M` + `GT` → `OTHER_BANK_STMT_6M` + `DONATION_EVIDENCE` (first S1303 block above)
+> - `LT6M` + `LE` → `OTHER_BANK_STMT_6M` only (`accountAgeMonths` < 6, `amountUsd` ≤ 25000)
+> - `GE6M` + `GT` → `DONATION_EVIDENCE` only
+> - `GE6M` + `LE` → `documents: []` (declaration only)
+> Declaration is required in every S1303 band.
+
+## Edge — NTB customer (any purpose) → `eligible:false`
+req: same as any purpose but `"customerType": "NTB"` (or `channelId` ending `_NTB`).
+resp (S0001 shown): identical body, with `"eligible" : false`. Documents/declaration are still listed for reference — the UI must key its block off `eligible`.
+```json
+{ "...envelope...":"", "status":"S", "responseData":[ {
+  "purposeCode":"S0001", "stream":"US1", "amountBand":"ALL", "accountAgeBand":"LT1Y",
+  "eligible": false,
+  "documents":[ "...as S0001..." ], "declaration":{ "required":true, "...":"..." },
+  "tooltipLabel":"Supporting Document", "tooltipContent":null } ] }
+```
+
+## Edge — missing / blank `purposeCode` → `errorCode 2072`
+req: envelope with `"purposeCode": ""` (or omitted).
+resp
+```json
+{
+  "responseId" : "57529930",
+  "requestId" : "REQ1784028900000",
+  "responseType" : "PURPOSEADDLDOC",
+  "groupId" : "AU",
+  "token" : null,
+  "status" : "F",
+  "message" : null,
+  "errorCode" : "2072",
+  "errorMessage" : "Mandatory validation failed",
+  "errorList" : [ {
+    "field" : "purposeCode",
+    "error" : "purposeCode is mandatory"
+  } ],
+  "userRefIdInfo" : null,
+  "responseData" : null,
+  "additionalFields" : null,
+  "customerResponse" : null,
+  "accountDetails" : null
+}
+```
+> Other errors: unknown/unconfigured purpose → `errorCode "4721"`; unexpected resolver error → `errorCode "4722"`; bad base-envelope field (requestId/userId/ipAddress/channelId) → `errorCode "2073"`.
+
+---
+
+# CRF 26-27-113 — Web Team Integration Guide
+### AU Bank "Purpose Requirements / Purpose-Additional-Document" API
+
+**Audience:** AU Web SPA (React) team.
+**Endpoint owner:** OneRemit backend (JAX-RS / RESTEasy).
+**Purpose of this doc:** everything the web team needs to (1) pull the customer's account data from the **SSO / Customer-360** service, (2) **match the selected source account by account number** to derive account vintage + status, (3) **call the Purpose-Additional-Document API** correctly, and (4) render its response — documents, declaration, tooltip — for every purpose code, with fully worked request/response examples including declaration values.
+
+---
+
+## 0. TL;DR — the sequence the web SPA must follow
+
+```
+Login (CIF)                                    Send-money screen
+     │                                                │
+     ▼                                                ▼
+1. POST auBank/getCustomer360Details          3. User picks Purpose + enters Amount (USD-equiv)
+   → account list (SSO/360)                        │
+     │                                              ▼
+2. Persist account list in session            4. MATCH selected source account number
+   {accountId, monthsSinceActive,                 against the SSO/360 list  → monthsSinceActive,
+    currentStatus, classification, ...}            currentStatus, classification
+     │                                              │
+     └──────────────────────────────────────────────┤
+                                                     ▼
+                              5. POST auBank/purpose-additional-document
+                                 { purposeCode, amountUsd, accountAgeMonths, + declaration inputs }
+                                                     │
+                                                     ▼
+                              6. Render response:
+                                 • documents[]      → upload rows (respect oneOfGroup = "any one of")
+                                 • declaration{}     → HTML block + accept checkbox (prefill=true on WEB)
+                                 • tooltipLabel/Content → the "?" help
+                                 • eligible=false   → block/redirect (ETB-only)
+```
+
+The API is a **read-only resolver**. It does not enforce limits, freeze accounts, or persist anything. It answers one question: *"For this purpose + amount + account-age + customer-type, what documents / declaration / tooltip must the UI present?"* All hard enforcement (LRS FY cap, per-channel cap, frozen/re-KYC block) is done elsewhere (ExchangeRate2 backend + the web journey) — **not** by this API.
+
+---
+
+## 1. Step 1–2: Get customer data from the SSO / Customer-360 service
+
+### 1.1 The call
+At login (after CIF entry) call the Customer-360 endpoint. This is the **SSO/360 source of truth** for the customer's AU SFB accounts.
+
+```
+POST /services/auBank/getCustomer360Details
+requestType: "GETCUSTOMERDETAILS"
+body:
+{
+  "transactionBranch": "2011",
+  "customerId": "<CIF>",       // the logged-in customer's CIF
+  "custDataType": "360"
+}
+```
+
+### 1.2 The response — the account list
+On `status === "S"`:
+- `respBody.token` → the resolved CIF id.
+- `respBody.additionalFields.field1` → **a JSON *string*** containing an **array of the customer's AU accounts**. Parse it (`JSON.parse`).
+
+Each account entry has these fields (this is the SSO/360 contract you must rely on):
+
+| Field | Meaning | Used for |
+|---|---|---|
+| `accountId` | AU SFB account number / id | **matching the selected source account** (Step 4) |
+| `productName` | product label | display |
+| `monthsSinceActive` | **account vintage in months** | → `accountAgeMonths` in the Purpose API (drives the age band) |
+| `dateAccountOpen` | account open date | fallback vintage if `monthsSinceActive` missing |
+| `currentStatus` | account status code | **frozen / active gate** (web-owned eligibility) |
+| `classification` | account classification | frozen / re-KYC gate (web-owned) |
+| `reason` | status reason | display / gate messaging |
+
+### 1.3 Persist it in session
+Store the parsed list in session/state keyed to the login (the branch app stores it as `auAccountList` with a 2-hour TTL). The web SPA should hold it in its auth/session store so the send-money screen can read it without re-fetching.
+
+> **Why this matters:** the Purpose API needs the **vintage of the specific account the customer is sending from**. That number lives only in the SSO/360 list — it is not on the transaction form. You must carry it across from login to the send-money call.
+
+---
+
+## 2. Step 4: **Match the selected source account by account number** (the "compare with account number" step)
+
+This is the crux the CRF calls out. The send-money screen has a **source-account dropdown**. Each option carries the account number (masked for display, unmasked/id in the value). When the user picks a source account you must **find that same account in the SSO/360 list** and read its `monthsSinceActive` / `currentStatus` / `classification`.
+
+### 2.1 The matching rule (as implemented on branch — mirror this on web)
+The selected dropdown value is a `##`-delimited token string:
+```
+sendAccId ## availableBalance ## unMaskedAccountNo ## bankBranch ## branchCode
+```
+Take **two candidate keys** — `sendAccId` (token[0]) and `unMaskedAccountNo` (token[2]) — and compare each against every SSO/360 entry's `accountId`. The first entry whose `accountId` **equals** either candidate is the selected account.
+
+```js
+// Pseudocode — the account-number comparison
+function resolveSelectedAccount(selectedDropdownValue, sso360List) {
+  const parts = (selectedDropdownValue || "").split("##");
+  const candidates = [parts[0], parts[2]];   // sendAccId, unMaskedAccountNo
+  for (const acct of sso360List) {
+    for (const key of candidates) {
+      if (key && acct.accountId === key) {
+        return acct;                          // <-- matched by account number
+      }
+    }
+  }
+  if (sso360List.length === 1) return sso360List[0];  // single-account fallback
+  return null;                                 // no match -> treat vintage as unknown
+}
+```
+
+### 2.2 What you read off the matched account
+- `monthsSinceActive` → send as **`accountAgeMonths`** to the Purpose API.
+- `currentStatus`, `classification`, `reason` → feed your **frozen / re-KYC eligibility** logic (web-owned; the Purpose API does not gate on these).
+- If **no match** and there is more than one account → treat vintage as **unknown**; the Purpose API will then apply the **stricter** age band as a precaution (see §5.5). Log/telemetry this — a mismatch usually means the dropdown value format drifted.
+
+> **Account-number normalisation:** compare on the exact `accountId` string the SSO returns. Don't trim leading zeros or reformat. If your dropdown masks the number for display, keep the **unmasked** number in the option value (token[2]) so the match works.
+
+---
+
+## 3. Calling the Purpose-Additional-Document API
+
+### 3.1 Endpoint
+```
+POST /OneRemit/services/auBank/purpose-additional-document
+Content-Type: application/json
+requestType: "PURPOSEADDLDOC"
+```
+Resolved object is returned in **`responseData[0]`**.
+
+### 3.2 Request/response **encryption** (mandatory)
+Every `/services/*` call on this platform is **encrypted** by the `RemitAPIRequestFilter` (`@RemitAPIAudit`). You must use the **same envelope** the platform's `executeApiRequest(...)` helper already produces — do **not** post raw JSON:
+
+- Envelope = `{ "identifier": <RSA-wrapped AES key>, "body": <AES-encrypted JSON> }`.
+- The response comes back in the same encrypted envelope and must be decrypted before you read `responseData`.
+- **Use the existing platform request helper** (the one that wraps `getCustomer360Details` etc.). This endpoint is registered exactly like the other AU endpoints — the encryption is transparent if you go through the shared caller. If you hand-roll the call you must replicate the RSA+AES envelope, or the filter returns `500 {"err":"INTERNAL"}`.
+
+### 3.3 Request contract
+Base envelope fields (validated by `RemitAPIRequestDTO` — violations → `errorCode 2073`):
+
+| Field | Rule | Notes |
+|---|---|---|
+| `requestId` | 4–20 alphanumeric | unique per call |
+| `requestType` | letters only, uppercase | `"PURPOSEADDLDOC"` |
+| `channelId` | valid channel | `"WEB"` (or `"BRANCH"`, `"WEB_NTB"`) |
+| `clientId`, `groupId` | — | `"AU"` / `"AU"` |
+| `sessionId` | — | current session |
+| `ipAddress` | valid IP | |
+| `userId` | 10 digits | |
+
+Resolver fields:
+
+| Field | Required | Meaning |
+|---|---|---|
+| `purposeCode` | **YES** | e.g. `S0001`. Missing/blank → `errorCode 2072` (SiteValidation). |
+| `channel` | — | `WEB`\|`BRANCH`; else derived from `channelId`. |
+| `customerType` | — | `ETB`\|`NTB`; else derived (`channelId` ending `_NTB` → NTB). US-1 is **ETB-only**. |
+| `amountUsd` | — | USD-equivalent → **amountBand** (US-2 threshold = 25000). |
+| `accountAgeMonths` | — | from the **matched** SSO/360 account's `monthsSinceActive` → **accountAgeBand**. |
+| `accountOpenDate` (+`accountOpenDateFormat`) | — | fallback if `accountAgeMonths` blank. |
+| **Declaration token inputs** | — | fill these so the returned declaration HTML is complete (see §4). |
+
+### 3.4 Response contract
+`responseData[0]` fields:
+```
+purposeCode, purposeName, rbiPurposeCode, stream, channel, customerType,
+amountBand, accountAgeBand, eligible,
+documents[], declaration{}, tooltipLabel, tooltipContent
+```
+- `eligible` (boolean): ETB-only flag. **`false`** → the UI must block/redirect (NTB or non-eligible). Documents/declaration may still be listed for reference; **key your gate off `eligible`**.
+- `documents[]`: `{docType, label, description, mandatory, oneOfGroup}`.
+  - Same `oneOfGroup` value ⇒ **"provide any ONE of"** these. `null` ⇒ standalone mandatory.
+- `declaration{}`: `{required, declarationCode, title, acceptCheckboxRequired, prefill, content, contentFormat, autoPopulatedFields[], tokenCatalog}` — or `{required:false}`.
+  - `content` is **HTML** (`contentFormat:"HTML"`) with tokens already resolved → inject via `innerHTML`.
+  - `prefill:true` on WEB (tokens filled from your request); `false` on BRANCH.
+  - Any unfilled `{{TOKEN}}` renders as `________________`.
+- `tooltipLabel`/`tooltipContent`: from `SupportingDocTooltipMaster` (band-matched); `tooltipContent` is `null` when none configured.
+- There is **no** `rules` / `canProceed` / `limits`. This API only says *what to present*.
+
+---
+
+## 4. Declaration values — how to fill them
+
+The declaration `content` is a template with `{{TOKEN}}` placeholders. The resolver fills tokens from two sources, **built-in getters** (overridden by) **`declarationFields`** you pass.
+
+### 4.1 Built-in tokens (auto-filled from your request fields)
+| Token | Source request field |
+|---|---|
+| `{{DATE}}` | server date (auto) |
+| `{{AMOUNT}}` | `transactionAmount` (or `amountUsd`) |
+| `{{CURRENCY}}` | `recvCurrency` |
+| `{{BENEFICIARY_NAME}}` | `beneficiaryName` |
+| `{{REMITTER_NAME}}` / `{{ACCOUNT_HOLDER_NAME}}` / `{{CUSTOMER_NAME}}` | `applicantName` |
+| `{{ACCOUNT_NUMBER}}` | `AccountNumber` |
+| `{{BRANCH_NAME}}` | `branchName` |
+| `{{BRANCH_ADDRESS}}` | `branchAddress` |
+| `{{SOURCE_OF_INCOME}}` | `sourceOfIncome` |
+| `{{PLACE}}` | `place` |
+| `{{INVESTEE_ENTITY}}` | `declarationFields.INVESTEE_ENTITY` |
+
+### 4.2 Dynamic tokens (`declarationFields` map)
+Any `{{KEY}}` in the template can be filled by adding `KEY` (upper-cased) to the `declarationFields` object — no backend change needed. E.g. `{{INVESTEE_ENTITY}}`, `{{AGE}}`.
+
+```jsonc
+"declarationFields": { "INVESTEE_ENTITY": "XYZ Global Equity Fund", "AGE": "35" }
+```
+
+### 4.3 Which purposes have a declaration
+| Declaration | No declaration |
+|---|---|
+| S0001, S0002, S0603, S0306, S1307, S1303 | S0005, S0023 |
+
+---
+
+## 5. Band logic (how `amountBand` / `accountAgeBand` are computed)
+
+- **US-1** (S0001/S0002/S0005/S0023): `amountBand` is always **`ALL`** (documents required at every amount). Age band: **`LT1Y`** (`monthsSinceActive < 12`) vs **`GE1Y`** (`>= 12`).
+- **US-2** (S0603/S0306/S1307/S1303): `amountBand` **`LE`** (`amountUsd <= 25000`) vs **`GT`** (`> 25000`). Unknown amount → `GT`.
+- **S1303 only** also has a 6-month vintage: **`LT6M`** (`< 6`) vs **`GE6M`** (`>= 6`). Under 6 months adds a 6-month other-bank statement.
+- **Amount band uses USD** (`amountUsd` = USD-equivalent), not the sending-currency amount.
+- **Unknown age** (`accountAgeMonths` and `accountOpenDate` both blank) → resolver applies the **stricter** band (`LT1Y` / `LT6M`) so the conditional documents show as a precaution.
+
+---
+
+## 6. Per-purpose worked requests (with declaration values) and expected responses
+
+> Common request envelope (fill `requestId`/`sessionId`/`ipAddress`/`userId` per session):
+> ```jsonc
+> { "requestId":"REQ1001","requestType":"PURPOSEADDLDOC","channelId":"WEB","clientId":"AU",
+>   "groupId":"AU","sessionId":"<session>","ipAddress":"127.0.0.1","userId":"7229119248",
+>   "channel":"WEB","customerType":"ETB", ...purpose fields... }
+> ```
+> The `accountAgeMonths` in each example is the value you read off the **matched SSO/360 account** in §2.
+
+### S0001 — Portfolio (Equity)  · declaration AU_DECL_S0001
+**Request (account < 1 yr):**
+```json
+{ "...envelope...":"", "purposeCode":"S0001", "amountUsd":"14000", "accountAgeMonths":"8",
+  "recvCurrency":"USD", "transactionAmount":"14000",
+  "applicantName":"Ravi Kumar", "beneficiaryName":"XYZ Global Equity Fund",
+  "branchName":"Andheri East", "branchAddress":"Andheri East, Mumbai 400069",
+  "AccountNumber":"1234500001",
+  "declarationFields":{ "INVESTEE_ENTITY":"XYZ Global Equity Fund" } }
+```
+**Response (LT1Y):** `amountBand:"ALL"`, `accountAgeBand:"LT1Y"`, `eligible:true`,
+documents = one-of(`OTHER_BANK_STMT_1Y`, `ITR_ASSESSMENT_ORDER`, `ITR_LATEST_RETURN`) **+** `INVESTMENT_EVIDENCE`;
+declaration required (HTML, `INVESTEE_ENTITY`/`AMOUNT`/`CURRENCY`/`BENEFICIARY_NAME`/`REMITTER_NAME`/`BRANCH_NAME`/`DATE` filled).
+**Response (accountAgeMonths ≥ 12 → GE1Y):** documents = `INVESTMENT_EVIDENCE` only; declaration same.
+
+### S0002 — Portfolio (Debt)  · declaration AU_DECL_S0002
+Identical shape to S0001 (`rbiPurposeCode:"P0002"`, `declarationCode:"AU_DECL_S0002"`). Same `INVESTEE_ENTITY` token.
+```json
+{ "...envelope...":"", "purposeCode":"S0002", "amountUsd":"14000", "accountAgeMonths":"8",
+  "recvCurrency":"USD", "transactionAmount":"14000",
+  "applicantName":"Ravi Kumar", "beneficiaryName":"XYZ Global Debt Fund", "branchName":"Andheri East",
+  "declarationFields":{ "INVESTEE_ENTITY":"XYZ Global Debt Fund" } }
+```
+
+### S0005 — Real Estate  · NO declaration
+```json
+{ "...envelope...":"", "purposeCode":"S0005", "amountUsd":"14000", "accountAgeMonths":"8" }
+```
+**Response (LT1Y):** one-of(`OTHER_BANK_STMT_1Y`,`ITR_ASSESSMENT_ORDER`,`ITR_LATEST_RETURN`) **+** `REAL_ESTATE_EVIDENCE`; `declaration:{required:false}`.
+**Response (GE1Y):** `REAL_ESTATE_EVIDENCE` only.
+
+### S0023 — Own foreign account  · NO declaration
+```json
+{ "...envelope...":"", "purposeCode":"S0023", "amountUsd":"14000", "accountAgeMonths":"8" }
+```
+**Response (LT1Y):** one-of(`OTHER_BANK_STMT_1Y`, `ITR_LAST_RETURN`); `declaration:{required:false}`.
+**Response (GE1Y):** `documents:[]`.
+
+### S0603 — General/Term-Life Insurance  · declaration AU_DECL_S0603 (both bands)
+```json
+{ "...envelope...":"", "purposeCode":"S0603", "amountUsd":"40000",
+  "applicantName":"Ravi Kumar", "AccountNumber":"1234500001",
+  "branchName":"Andheri East", "branchAddress":"Andheri East, Mumbai 400069",
+  "recvCurrency":"USD", "transactionAmount":"40000" }
+```
+**Response ≤25000 (LE):** `documents:[]` + declaration. **Response >25000 (GT):** `INSURANCE_POLICY` + declaration.
+
+### S0306 — Other Travel  · declaration AU_DECL_S0306 (both bands)
+```json
+{ "...envelope...":"", "purposeCode":"S0306", "amountUsd":"40000", "transactionAmount":"40000",
+  "applicantName":"Ravi Kumar", "branchAddress":"Andheri East, Mumbai 400069" }
+```
+**Response ≤25000 (LE):** `documents:[]` + declaration. **Response >25000 (GT):** `TRAVEL_SUPPORTING_DOC` + declaration.
+
+### S1307 — Emigration  · declaration AU_DECL_S1307 (both bands)
+```json
+{ "...envelope...":"", "purposeCode":"S1307", "amountUsd":"40000", "transactionAmount":"40000",
+  "applicantName":"Ravi Kumar", "branchAddress":"Andheri East, Mumbai 400069" }
+```
+**Response ≤25000 (LE):** `documents:[]` + declaration. **Response >25000 (GT):** `EMIGRATION_EVIDENCE` + declaration.
+
+### S1303 — Donation  · declaration AU_DECL_S1303 (both bands + 6-month vintage)
+```json
+{ "...envelope...":"", "purposeCode":"S1303", "amountUsd":"40000", "accountAgeMonths":"20",
+  "recvCurrency":"USD", "transactionAmount":"40000",
+  "applicantName":"Ravi Kumar", "beneficiaryName":"Global Charity Foundation",
+  "branchName":"Andheri East", "sourceOfIncome":"Salary", "place":"Mumbai" }
+```
+**Response GE6M, >25000:** `DONATION_EVIDENCE` + declaration.
+**Response GE6M, ≤25000:** `documents:[]` + declaration.
+**Response LT6M (`accountAgeMonths` 3), >25000:** `OTHER_BANK_STMT_6M` **+** `DONATION_EVIDENCE` + declaration.
+**Response LT6M, ≤25000:** `OTHER_BANK_STMT_6M` only + declaration.
+
+### NTB (any purpose) — not eligible
+Send `customerType:"NTB"` (or `channelId` ending `_NTB`). Response has `eligible:false`; **block on that**.
+
+---
+
+## 7. Rendering guidance (web SPA)
+
+1. **Eligibility gate first.** `eligible === false` → do not let the customer proceed on this purpose (ETB-only). Show the appropriate message / redirect. (This is a *display* gate; the hard block is web-journey + backend.)
+2. **Documents.** Render one upload row per `documents[]` entry. Group entries sharing a `oneOfGroup` value under a single **"provide any one of"** heading and require exactly one upload among them; `oneOfGroup:null` entries are each independently mandatory. Use `label`/`description` for the row text.
+3. **Declaration.** If `declaration.required`, render `declaration.content` via `innerHTML` (it is sanitised HTML with tokens resolved). If `acceptCheckboxRequired`, gate "Proceed" on the accept checkbox. `prefill:true` means tokens are already filled — you don't re-fill them.
+4. **Tooltip.** Show `tooltipLabel` with a "?" that reveals `tooltipContent` (HTML) — only if `tooltipContent` is non-null.
+5. **Re-fetch triggers.** Call the API again whenever **purpose**, **amount (USD)**, or **selected source account** changes — all three change the band and therefore the required documents/declaration.
+
+---
+
+## 8. Frozen / re-KYC & limits — web-owned, NOT this API
+
+- **Frozen / re-KYC**: evaluate `currentStatus` / `classification` / `reason` from the **matched SSO/360 account** (§2.2). This API does **not** gate on account status.
+- **LRS FY USD 250,000 aggregate cap** and **per-channel single-transaction caps**: enforced by the backend (`ExchangeRate2`) at rate-calc/booking and by the web journey. This API returns nothing about limits.
+
+---
+
+## 9. Error handling
+
+| `errorCode` | When | Web action |
+|---|---|---|
+| `2072` | missing/blank `purposeCode` | site-validation; read `errorList[].field`/`.error`. **(Was `4720` — migrate any old check.)** |
+| `4721` | purpose not configured (no active `PurposeReqMaster` row) | treat as "no additional docs configured"; surface to ops. |
+| `4722` | unexpected resolver error | generic retry/error; the resolver still returns HTTP 200 with status `F`. |
+| `2073` | base DTO validation failed (bad requestId/userId/ipAddress/channelId) | fix the envelope fields. |
+| HTTP `500 {"err":"INTERNAL"}` | encryption envelope wrong / filter failure | you bypassed the shared encrypted caller — use it (§3.2). |
+
+---
+
+## 10. Quick reference — document-code legend
+`OTHER_BANK_STMT_1Y` other-bank one-year statement · `ITR_ASSESSMENT_ORDER` IT Assessment Order · `ITR_LATEST_RETURN` latest ITR · `ITR_LAST_RETURN` last ITR filed · `INVESTMENT_EVIDENCE` investment evidence · `REAL_ESTATE_EVIDENCE` real-estate evidence · `INSURANCE_POLICY` policy/underlying doc · `TRAVEL_SUPPORTING_DOC` travel doc · `EMIGRATION_EVIDENCE` emigration payment evidence · `DONATION_EVIDENCE` donation purpose doc · `OTHER_BANK_STMT_6M` 6-month other-bank statement.
+
+## 11. Related artifacts
+- `CRF_26-27-113_AU_PurposeRequirements_API_Examples.md` — full request/response JSON per purpose × band × age + edge cases.
+- `CRF_26-27-113_AU_UAT_TestCases.md` — 25-row UAT sheet (CIF vintages).
+- `CRF_26-27-113_AU_Declaration_UPDATE.sql` — exact declaration HTML per purpose (DB seed).
+- `apiCaller.jsp` (admin) — encrypted tester with a quick-build panel and WEB/BRANCH run-all-purposes checklists.
